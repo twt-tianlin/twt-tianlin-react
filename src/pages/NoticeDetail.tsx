@@ -3,26 +3,39 @@ import { useParams } from "react-router-dom";
 import {  useEffect } from "react";
 import { getNoticeDetail } from "../api/notice";
 import { Typography, Card } from "antd";
+import { useState } from "react";
 const { Title, Paragraph, Text } = Typography;
 
 export default function NoticeDetail() {
-  // const [notice, setNotice] = useState<any>();
+  const initialTitle = {
+    id:1,
+    title:'',
+    content:'',
+    updateAt:''
+  }
+
   const params = useParams();
-  const id: string = params.id || "";
+  const [notice, setNotice] = useState<any>(initialTitle);
+
+  const [id,setId] = useState<string>(params.id as string);
   useEffect(() => {
-    getNoticeDetail(id).then((res: any) => {
-      // setNotice(res.data.data);
-      console.log(res.data.data);
-    });
-  }, [id]);
+   async function fetchData(id:string)  {
+    const result = await getNoticeDetail(id)
+    setNotice(result.data.data)
+    console.log(result.data.data)
+   }
+   fetchData(id)
+  }, []);
+
+  
 
   return (
     <div>
       <Card  bordered={true}>
         <Paragraph>
-          <Title level={4}>天津大学2021级本科新生骨干培训“天麟班”十一期学员拟录取名单</Title>
-          <blockquote>天津大学2021级本科新生骨干培训“天麟班”十一期学员拟录取名单</blockquote>
-          <Text italic>2022-06-21 09:51:23</Text>
+          <Title level={4}>{notice.title}</Title>
+          <blockquote>{notice.content}</blockquote>
+          <Text italic>{notice.updatedAt}</Text>
         </Paragraph>
       </Card>
     </div>

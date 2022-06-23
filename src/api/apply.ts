@@ -17,3 +17,10 @@ export function admitUserApi(uid:number){
         }
     })
 }
+
+export function getApplierDetail(uid:string){
+    return service({
+        method:'get',
+        url:`/apply/user/${uid}`
+    })
+}

@@ -1,10 +1,11 @@
-import { Button, Form, Input, Card, message } from "antd";
+import { Button, Form, Input, Card } from "antd";
 import React from "react";
-import { login } from "../api/user";
-
+import { changeUserInfo } from "../features/user/userSlice";
 import { useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { selectUser } from "../features/user/userSlice";
 
 const LoginBox = styled.div`
   height: 300px;
@@ -14,24 +15,16 @@ const LoginBox = styled.div`
 `;
 
 export const Login: React.FC = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const user = useAppSelector(selectUser)
+
+  if(user.uid!==0){
+    navigate('/')
+  }
+
   const onFinish = (data: any) => {
-    login(data)
-      .then((res) => {
-        let data = res.data;
-        if (data.state === 200) {
-          localStorage.setItem("token", data.data.token);
-          localStorage.setItem("name", data.data.name);
-          localStorage.setItem("uid",data.data.id);
-          message.success("登录成功");
-          navigate("/");
-        } else {
-          message.error(data.msg);
-        }
-      })
-      .catch(() => {
-        message.error("系统异常 请联系管理员");
-      });
+    dispatch(changeUserInfo(data))
   };
 
   const onFinishFailed = (errorInfo: any) => {

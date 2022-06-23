@@ -6,6 +6,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import {logout}  from "../api/user";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../app/hooks";
+import { selectUser } from "../features/user/userSlice";
 
 const HeaderBox = styled.div`
   height: 600px
@@ -22,6 +24,8 @@ const { Header } = Layout;
 
 export default function AppHeader() {
   const navigate = useNavigate();
+  const user = useAppSelector(selectUser);
+
   const logoutButton = ()=>{
     logout().then((res:any)=>{
       let data= res.data;
@@ -37,7 +41,7 @@ export default function AppHeader() {
         message.error('系统异常 请联系管理员')
     })
   }
-  const name = localStorage.getItem("name");
+  const name = user.name;
   const token = localStorage.getItem("token");
   if (name === ''|| token==='') {
     return (
@@ -67,7 +71,7 @@ export default function AppHeader() {
 
             <ButtonBox>
               <Button>
-                <Link to="/login">{name}</Link>
+                {name}
               </Button>
               <Button onClick={logoutButton}>
                 退出

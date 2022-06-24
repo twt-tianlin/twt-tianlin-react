@@ -2,8 +2,9 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import {  useEffect } from "react";
 import { getNoticeDetail } from "../api/notice";
-import { Typography, Card } from "antd";
+import { Typography, Card,Divider } from "antd";
 import { useState } from "react";
+
 const { Title, Paragraph, Text } = Typography;
 
 export default function NoticeDetail() {
@@ -11,6 +12,7 @@ export default function NoticeDetail() {
     id:1,
     title:'',
     content:'',
+    filePath:'',
     updateAt:''
   }
 
@@ -21,7 +23,6 @@ export default function NoticeDetail() {
    async function fetchData(id:string)  {
     const result = await getNoticeDetail(id)
     setNotice(result.data.data)
-    console.log(result.data.data)
    }
    fetchData(params.id||'')
   }, [params.id]);
@@ -32,8 +33,12 @@ export default function NoticeDetail() {
     <div>
       <Card  bordered={true}>
         <Paragraph>
+          <Title level={2}>公告</Title>
+          <Divider />
           <Title level={4}>{notice.title}</Title>
           <blockquote>{notice.content}</blockquote>
+          <Text>附件  【 <a onClick={()=>window.open("http://localhost:8080/notice/attachment?filePath="+notice.filePath)}> {notice.filePath.substring(notice.filePath.lastIndexOf("/")+1)} </a> 】</Text>
+          <br />
           <Text italic>{notice.updatedAt}</Text>
         </Paragraph>
       </Card>

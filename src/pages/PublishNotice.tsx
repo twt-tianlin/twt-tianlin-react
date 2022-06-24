@@ -7,8 +7,7 @@ import { publishNotice } from '../api/notice';
 const { TextArea} = Input;
 
 const LoginBox = styled.div`
-  height: 300px;
-  width: 520px;
+  width: 50%;
   margin: 20px auto;
   text-align: center;
 `;

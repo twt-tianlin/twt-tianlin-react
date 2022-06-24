@@ -1,7 +1,8 @@
-import { Button, Form, Input, Card, message } from "antd";
+import { Button, Form, Input, Card } from "antd";
 import React from "react";
-import { register } from "../api/user";
 import { useNavigate } from "react-router-dom";
+import { autoChangeUserInfo, selectUser } from "../features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 
 import styled from "styled-components";
 
@@ -14,27 +15,14 @@ const LoginBox = styled.div`
 
 export const Register: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(selectUser)
+  if(user.uid!==0){
+    navigate('/')
+  }
+  
   const onFinish = (data: any) => {
-    if (data.password !== data.confirmPassword) {
-      message.error("两次输入密码不匹配");
-    } else {
-      register(data)
-        .then((res) => {
-          let data = res.data;
-          if (data.state === 200) {
-            localStorage.setItem("token", data.data.token);
-            localStorage.setItem("name", data.data.name);
-            localStorage.setItem("uid", data.data.id);
-            message.success("注册成功");
-            navigate("/");
-          } else {
-            message.error(data.msg);
-          }
-        })
-        .catch(() => {
-          message.error("系统异常 请联系管理员");
-        });
-    }
+    dispatch(autoChangeUserInfo(data))
   };
 
   const onFinishFailed = (errorInfo: any) => {

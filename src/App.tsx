@@ -4,8 +4,8 @@ import AppHeader from "./components/AppHeader";
 import AppFooter from "./components/AppFooter";
 import header from "./images/header.png";
 import Main from "./pages/Main";
-import {Login} from "./pages/Login";
-import {Register} from "./pages/Register";
+import { Login } from "./pages/Login";
+import { Register } from "./pages/Register";
 import Apply from "./pages/Apply";
 import Notices from "./pages/Notices";
 import PublishNotice from "./pages/PublishNotice";
@@ -13,15 +13,24 @@ import NoticeDetail from "./pages/NoticeDetail";
 import Confirm from "./pages/Confirm";
 import CheckProcess from "./pages/CheckProcess";
 import ApplierDetail from "./pages/ApplierDetail";
-
 import "./App.css";
+import styled from "styled-components";
+
+const HeaderBox = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden
+`;
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <AppHeader />
-        <img src={header} alt="" />
+        <HeaderBox>
+          <img src={header} alt="" style={{objectFit:"contain",width:"100%"}} />
+        </HeaderBox>
+
         <Routes>
           <Route index element={<Main />}></Route>
           <Route path="/login" element={<Login />}></Route>

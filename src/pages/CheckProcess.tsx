@@ -82,10 +82,11 @@ export default function CheckProcess() {
   return (
     <div>
       <Card title="导出">
-        <Card.Grid style={gridStyle}>导出报名信息</Card.Grid>
-        <Card.Grid style={gridStyle}>导出确认信息</Card.Grid>
-        <Card.Grid style={gridStyle}>导出学生佐证材料</Card.Grid>
+        <Card.Grid style={gridStyle} onClick={()=>window.open("http://localhost:8080/download/applyInfo")}>导出报名信息</Card.Grid>
+        <Card.Grid style={gridStyle} onClick={()=>window.open("http://localhost:8080/download/confirmInfo")}>导出确认信息</Card.Grid>
+        <Card.Grid style={gridStyle} onClick={()=>window.open("http://localhost:8080/download/attachment")}>导出学生佐证材料</Card.Grid>
       </Card>
+
       <Table columns={columns} dataSource={applyUsers} />
     </div>
   );

@@ -17,15 +17,14 @@ export default function NoticeDetail() {
   const params = useParams();
   const [notice, setNotice] = useState<any>(initialTitle);
 
-  const [id,setId] = useState<string>(params.id as string);
   useEffect(() => {
    async function fetchData(id:string)  {
     const result = await getNoticeDetail(id)
     setNotice(result.data.data)
     console.log(result.data.data)
    }
-   fetchData(id)
-  }, []);
+   fetchData(params.id||'')
+  }, [params.id]);
 
   
 

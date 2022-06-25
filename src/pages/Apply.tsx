@@ -20,6 +20,8 @@ import {
   ConfigProvider,
 } from "antd";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../app/hooks";
+import { selectUser } from "../features/user/userSlice";
 
 const ApplyBox = styled.div`
   height: auto;
@@ -37,6 +39,7 @@ export default function Apply() {
   const [isShowIdentityDetail, setIsShowIdentityDetail] = useState(false);
   const [initBirthDate, setInitBirthDate] = useState<string>("2000-01-01");
   const navigate = useNavigate()
+  const user = useAppSelector(selectUser);
 
   useEffect(()=>{
     getStatus().then((res:any)=>{
@@ -102,7 +105,7 @@ export default function Apply() {
     
     let applyData: any = { ...data };
     
-    applyData.uid = localStorage.getItem("uid");
+    applyData.uid = user.uid;
     applyData.birthDate=initBirthDate;
     applyData.photoPath = photoPath;
     applyData.filePath = filePath;
@@ -112,6 +115,7 @@ export default function Apply() {
         const data = res.data;
         if (data.state === 200) {
           message.success("提交成功");
+          navigate('/')
         } else {
           message.error(data.msg);
         }

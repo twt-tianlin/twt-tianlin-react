@@ -4,6 +4,7 @@ import { UploadOutlined } from "@ant-design/icons";
 import type { UploadProps } from "antd";
 import styled from "styled-components";
 import { publishNotice } from '../api/notice';
+import { useNavigate } from 'react-router-dom';
 const { TextArea} = Input;
 
 const LoginBox = styled.div`
@@ -13,6 +14,7 @@ const LoginBox = styled.div`
 `;
     
 export default function PublishNotice() {
+  const navigate=useNavigate()
 
     let filePath = "";
 
@@ -41,6 +43,7 @@ export default function PublishNotice() {
             let data = res.data;
             if (data.state === 200) {
               message.success("发布成功");
+              navigate('/')
             } else {
               message.error(data.msg);
             }

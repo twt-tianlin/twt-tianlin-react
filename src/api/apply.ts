@@ -28,6 +28,16 @@ export function unAdmitUserApi(uid:number){
     })
 }
 
+export function getUserAdmit(uid:number){
+    return service({
+        method: 'get',
+        url: '/apply/admit',
+        params:{
+            uid:uid
+        }
+    })
+}
+
 export function getApplierDetail(uid:string){
     return service({
         method:'get',

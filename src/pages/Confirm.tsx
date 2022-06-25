@@ -2,9 +2,12 @@ import React, { useState,useEffect } from "react";
 import { Button, Form, Input, Card, message, Radio } from "antd";
 import styled from "styled-components";
 import { confirmInfo } from "../api/confirm";
-import { RadioChangeEvent, Col, Checkbox, Row } from "antd";
+import { RadioChangeEvent, Col, Checkbox, Row,InputNumber } from "antd";
 import { useNavigate } from "react-router-dom";
 import { getStatus } from "../api/status";
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/user/userSlice";
+import { getUserAdmit } from "../api/apply";
 
 const ConfirmInfoBox = styled.div`
   height: auto;
@@ -16,6 +19,7 @@ const ConfirmInfoBox = styled.div`
 export default function Confirm() {
   const [confirmTrain, setConfirmTrain] = useState<boolean>(false);
   const [needBed, setNeedBed] = useState<boolean>(false);
+  const user = useSelector(selectUser)
 
   const navigate = useNavigate()
 
@@ -24,9 +28,16 @@ export default function Confirm() {
       if(!res.data.data.confirm){
         message.error("录取报道系统暂未开启")
         navigate(-1)
+      }else{
+        getUserAdmit(user.uid).then((res:any)=>{
+          if(res.data.data==="未录取"){
+            message.error("您还未被录取 请等待通知")
+            navigate(-1)
+          }
+        })
       }
     })
-  },[navigate])
+  },[navigate,user.uid])
 
   const changeConfirm = (e: RadioChangeEvent) => {
     if (e.target.value === "1") {
@@ -45,13 +56,14 @@ export default function Confirm() {
 
   const onFinish = (data: any) => {
 
-    data.uid=localStorage.getItem('uid')
+    data.uid=user.uid
     console.log(data)
     confirmInfo(data)
       .then((res) => {
         let data = res.data;
         if (data.state === 200) {
           message.success("提交成功");
+          navigate('/')
         } else {
           message.error(data.msg);
         }
@@ -184,6 +196,32 @@ export default function Confirm() {
               >
                 <Input />
               </Form.Item>
+
+
+              <Form.Item
+                label="到津时间"
+                name="timeToJin"
+                rules={[{ required: true, message: "请输入到津时间" }]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item
+                label="航班/车次"
+                name="trainNumber"
+                rules={[{ required: true, message: "请输入航班或车次" }]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item label="是否需要接站" name="isNeedPickUp">
+              <Radio.Group >
+                <Radio value="1"> 是 </Radio>
+                <Radio value="2"> 否 </Radio>
+              </Radio.Group>
+            </Form.Item>
+
+            <Form.Item label="陪同人数" name="accompanyNumber">
+        <InputNumber />
+      </Form.Item>
             </>
           )}
 

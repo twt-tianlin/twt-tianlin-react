@@ -6,8 +6,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import {logout}  from "../api/user";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../app/hooks";
-import { selectUser } from "../features/user/userSlice";
+import { useAppSelector,useAppDispatch } from "../app/hooks";
+import { selectUser, userLogout } from "../features/user/userSlice";
+
 
 const HeaderBox = styled.div`
   height: 600px
@@ -25,6 +26,7 @@ const { Header } = Layout;
 export default function AppHeader() {
   const navigate = useNavigate();
   const user = useAppSelector(selectUser);
+  const dispatch = useAppDispatch();
 
   const logoutButton = ()=>{
     logout().then((res:any)=>{
@@ -32,6 +34,7 @@ export default function AppHeader() {
       if(data.state===200){
         message.success("退出成功")
         localStorage.setItem('token','')
+        dispatch(userLogout())
         navigate('/')
       }else{
         message.error(data.msg)

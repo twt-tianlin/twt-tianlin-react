@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { message } from "antd";
-import { login,register } from "../../api/user";
+import { login,register,logout } from "../../api/user";
 import { RootState } from "../../app/store";
 
 export interface UserState {
@@ -30,8 +30,20 @@ export const changeUserInfo = createAsyncThunk(
 export const autoChangeUserInfo = createAsyncThunk(
   "user/register",
   async (data: any) => {
-    const res = await register(data);
-    return res.data;
+    if(data.password !==data.confirmPassword){
+      message.error("两次填写的密码不相同")
+    }else{
+      const res = await register(data);
+      return res.data;
+    }
+  }
+);
+
+export const userLogout = createAsyncThunk(
+  "user/logout",
+  async () => {
+      const res = await logout();
+      return res.data;
   }
 );
 
@@ -64,6 +76,19 @@ export const userSlice = createSlice({
         state.role=data.data.role;
         localStorage.setItem("token",data.data.token);
         message.success("注册成功")
+      }else{
+        message.error(data.msg)
+      }
+    });
+    builder.addCase(userLogout.fulfilled,(state,action)=>{
+      const data = action.payload;
+      if(data.state===200){
+        state.uid=0
+        state.name=""
+        state.email=""
+        state.role=""
+        localStorage.setItem("token","")
+        message.success("退出成功")
       }else{
         message.error(data.msg)
       }

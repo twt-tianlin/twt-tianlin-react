@@ -50,18 +50,18 @@ export default function AdminButton() {
       openApplySystem().then((res: any) => {
         let data = res.data;
         if (data.state === 200) {
-          message.success("开启成功");
+          message.success("申请系统开启成功");
         } else {
-          message.error("开启失败");
+          message.error("申请系统开启失败");
         }
       });
     } else {
       closeApplySystem().then((res: any) => {
         let data = res.data;
         if (data.state === 200) {
-          message.success("关闭成功");
+          message.success("申请系统关闭成功");
         } else {
-          message.error("关闭失败");
+          message.error("申请系统关闭失败");
         }
       });
     }
@@ -71,9 +71,9 @@ export default function AdminButton() {
       openConfirmSystem().then((res: any) => {
         let data = res.data;
         if (data.state === 200) {
-          message.success("申请系统开启成功");
+          message.success("确认系统开启成功");
         } else {
-          message.error("申请系统开启失败");
+          message.error("确认系统开启失败");
         }
       });
     } else {

@@ -1,10 +1,9 @@
 import React from "react";
 import { Descriptions, Button, message, Image, Popconfirm } from "antd";
-import { admitUserApi,unAdmitUserApi } from "../api/apply";
+import { admitUserApi, unAdmitUserApi } from "../api/apply";
 import { useState, useEffect } from "react";
 import { getApplierDetail } from "../api/apply";
-import { useParams, } from "react-router-dom";
-import { downloadApplierFile } from "../api/download";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function ApplierDetail() {
   const params = useParams();
@@ -39,6 +38,7 @@ export default function ApplierDetail() {
   };
 
   const [applier, setApplier] = useState(initialState);
+  const navigate = useNavigate()
 
   useEffect(() => {
     getApplierDetail(params.id || "")
@@ -61,7 +61,7 @@ export default function ApplierDetail() {
         let data = res.data;
         if (data.state === 200) {
           message.success("录取成功");
-          window.location.reload()
+          navigate(-1)
         } else {
           message.error(data.msg);
         }
@@ -77,7 +77,7 @@ export default function ApplierDetail() {
         let data = res.data;
         if (data.state === 200) {
           message.success("取消成功");
-          window.location.reload()
+          navigate(-1)
         } else {
           message.error(data.msg);
         }
@@ -164,9 +164,10 @@ export default function ApplierDetail() {
 
       <Button
         onClick={() =>
-          downloadApplierFile({
-            filePath: applier.filePath,
-          })
+          window.open(
+            "http://localhost:8080/download/applier/file?filePath=" +
+              applier.filePath
+          )
         }
         style={{ marginTop: "20px" }}
       >
@@ -175,33 +176,31 @@ export default function ApplierDetail() {
 
       <br />
 
-        {applier.admit==='已录取'&&(
-            <Popconfirm
-            style={{ marginBottom: "20px" }}
-            title="确定要取消录取吗？"
-            onConfirm={unAdmitUser}
-            okText="确定"
-            cancelText="不确定"
-          >
-            <Button>{applier.admit}</Button>
-          </Popconfirm>
-        )}
-      
+      {applier.admit === "已录取" && (
+        <Popconfirm
+          style={{ marginBottom: "20px" }}
+          title="确定要取消录取吗？"
+          onConfirm={unAdmitUser}
+          okText="确定"
+          cancelText="不确定"
+        >
+          <Button>{applier.admit}</Button>
+        </Popconfirm>
+      )}
 
-      {applier.admit==='未录取'&&(
-            <Popconfirm 
-            style={{ marginBottom: "20px" }}
-            title="确定要录取吗？"
-            onConfirm={admitUser}
-            okText="确定"
-            cancelText="不确定"
-          >
-            <Button>{applier.admit}</Button>
-          </Popconfirm>
-        )}
+      {applier.admit === "未录取" && (
+        <Popconfirm
+          style={{ marginBottom: "20px" }}
+          title="确定要录取吗？"
+          onConfirm={admitUser}
+          okText="确定"
+          cancelText="不确定"
+        >
+          <Button>{applier.admit}</Button>
+        </Popconfirm>
+      )}
 
-
-        <br />
+      <br />
     </div>
   );
 }

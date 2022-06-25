@@ -32,7 +32,6 @@ export default function AppHeader() {
       if(data.state===200){
         message.success("退出成功")
         localStorage.setItem('token','')
-        localStorage.setItem('name','')
         navigate('/')
       }else{
         message.error(data.msg)

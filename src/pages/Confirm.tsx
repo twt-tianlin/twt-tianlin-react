@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Button, Form, Input, Card, message, Radio } from "antd";
 import styled from "styled-components";
 import { confirmInfo } from "../api/confirm";
 import { RadioChangeEvent, Col, Checkbox, Row } from "antd";
+import { useNavigate } from "react-router-dom";
+import { getStatus } from "../api/status";
 
 const ConfirmInfoBox = styled.div`
-  height: 300px;
-  width: 700px;
+  height: auto;
+  width: auto;
   margin: 20px auto;
   text-align: center;
 `;
@@ -14,6 +16,17 @@ const ConfirmInfoBox = styled.div`
 export default function Confirm() {
   const [confirmTrain, setConfirmTrain] = useState<boolean>(false);
   const [needBed, setNeedBed] = useState<boolean>(false);
+
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    getStatus().then((res:any)=>{
+      if(!res.data.data.confirm){
+        message.error("录取报道系统暂未开启")
+        navigate(-1)
+      }
+    })
+  },[navigate])
 
   const changeConfirm = (e: RadioChangeEvent) => {
     if (e.target.value === "1") {

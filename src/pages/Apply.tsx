@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { UploadOutlined } from "@ant-design/icons";
 import type { UploadProps } from "antd";
@@ -6,6 +6,7 @@ import { commitApply } from "../api/apply";
 import { useState } from "react";
 import locale from "antd/lib/locale/zh_CN";
 import moment from "moment";
+import {getStatus} from '../api/status'
 import {
   Form,
   Input,
@@ -18,9 +19,10 @@ import {
   message,
   ConfigProvider,
 } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const ApplyBox = styled.div`
-  height: 1600px;
+  height: auto;
   width: auto;
   margin: 20px auto;
   text-align: center;
@@ -34,6 +36,16 @@ export default function Apply() {
 
   const [isShowIdentityDetail, setIsShowIdentityDetail] = useState(false);
   const [initBirthDate, setInitBirthDate] = useState<string>("2000-01-01");
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    getStatus().then((res:any)=>{
+      if(!res.data.data.apply){
+        message.error("申请系统暂未开启")
+        navigate(-1)
+      }
+    })
+  },[navigate])
 
   const controllDetail = (value: string) => {
     if (value === "高中阶段获得省级以上荣誉" || value === "其他") {

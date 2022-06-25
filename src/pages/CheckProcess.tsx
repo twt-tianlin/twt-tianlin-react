@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from "react";
 import { Card, message } from "antd";
-import { Space, Table } from "antd";
+import { Space, Table,Button } from "antd";
 import type { ColumnsType } from "antd/lib/table";
 import { Link } from "react-router-dom";
 import {getApplyUser} from '../api/check'
@@ -59,7 +59,7 @@ const columns: ColumnsType<DataType> = [
 
 
 const gridStyle: React.CSSProperties = {
-  width: "25%",
+  width: "33%",
   textAlign: "center",
 };
 
@@ -81,11 +81,15 @@ export default function CheckProcess() {
 
   return (
     <div>
-      <Card title="导出">
-        <Card.Grid style={gridStyle} onClick={()=>window.open("http://localhost:8080/download/applyInfo")}>导出报名信息</Card.Grid>
-        <Card.Grid style={gridStyle} onClick={()=>window.open("http://localhost:8080/download/confirmInfo")}>导出确认信息</Card.Grid>
-        <Card.Grid style={gridStyle} onClick={()=>window.open("http://localhost:8080/download/attachment")}>导出学生佐证材料</Card.Grid>
+      <Card title="导出" style={{textAlign:'center'}}>
+        <Card.Grid style={gridStyle} onClick={()=>window.open("http://localhost:8080/download/applyInfo")}>
+        <Button type="link">导出报名信息</Button></Card.Grid>
+        <Card.Grid style={gridStyle} onClick={()=>window.open("http://localhost:8080/download/confirmInfo")}>
+        <Button type="link">导出确认信息</Button></Card.Grid>
+        <Card.Grid style={gridStyle} onClick={()=>window.open("http://localhost:8080/download/attachment")}>
+        <Button type="link">导出学生佐证材料</Button></Card.Grid>
       </Card>
+      <br />
 
       <Table columns={columns} dataSource={applyUsers} />
     </div>

@@ -1,3 +1,4 @@
+import { message } from "antd";
 import axios from "axios";
 
 const service = axios.create({
@@ -21,7 +22,9 @@ service.interceptors.response.use(
   function (response) {
     const res = response.data;
 
-    if (res.state !== 200) {
+    if (res.state === 403) {
+      message.error(res.data + "请重新登录管理员账号")
+      localStorage.setItem("token",'')
     }
     return response;
   },

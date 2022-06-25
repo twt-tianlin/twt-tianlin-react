@@ -18,6 +18,16 @@ export function admitUserApi(uid:number){
     })
 }
 
+export function unAdmitUserApi(uid:number){
+    return service({
+        method: 'post',
+        url: '/apply/unAdmit',
+        params: {
+            uid : uid
+        }
+    })
+}
+
 export function getApplierDetail(uid:string){
     return service({
         method:'get',

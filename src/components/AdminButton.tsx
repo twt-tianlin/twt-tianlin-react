@@ -25,10 +25,9 @@ export default function AdminButton() {
     getStatus()
       .then((res: any) => {
         let data = res.data;
-        console.log(data);
         if (data.state === 200) {
           if (data.data.apply === 1) {
-            setApplySystemChecked(true);
+            setApplySystemChecked(true);          
           } else {
             setApplySystemChecked(false);
           }
@@ -100,23 +99,51 @@ export default function AdminButton() {
         </Button>
       </AdminButtonBox>
 
-      <AdminButtonBox style={{margin:"20px"}} >
-        申请系统
-        <Switch
-          defaultChecked={applySystemChecked}
-          onChange={changeApplySystem}
-          style={{marginLeft:"10px"}}
-        />
-      </AdminButtonBox>
 
-      <AdminButtonBox style={{margin:"20px"}}>
+    {applySystemChecked&&(
+      <AdminButtonBox style={{margin:"20px"}} >
+      申请系统
+      <Switch
+        defaultChecked={true}
+        onChange={changeApplySystem}
+        style={{marginLeft:"10px"}}
+      />
+    </AdminButtonBox>
+    )}
+    
+    {!applySystemChecked&&(
+      <AdminButtonBox style={{margin:"20px"}} >
+      申请系统
+      <Switch
+        defaultChecked={false}
+        onChange={changeApplySystem}
+        style={{marginLeft:"10px"}}
+      />
+    </AdminButtonBox>
+    )}
+      
+      {confirmSystemChecked&&(
+        <AdminButtonBox style={{margin:"20px"}}>
         确认系统
         <Switch
-          defaultChecked={confirmSystemChecked}
+          defaultChecked={true}
           onChange={changeConfirmSystem}
           style={{marginLeft:"10px"}}
         />
       </AdminButtonBox>
+      )}
+
+{!confirmSystemChecked&&(
+        <AdminButtonBox style={{margin:"20px"}}>
+        确认系统
+        <Switch
+          defaultChecked={false}
+          onChange={changeConfirmSystem}
+          style={{marginLeft:"10px"}}
+        />
+      </AdminButtonBox>
+      )}
+      
     </>
   );
 }

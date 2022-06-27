@@ -50,7 +50,8 @@ export default function AppHeader() {
       <div>
         <HeaderBox>
           <Header style={{ backgroundColor: "white" }}>
-            <img src={logo} alt="" />
+            <Link to={'/'}><img src={logo} alt="" /></Link>
+            
 
             <ButtonBox>
               <Button>

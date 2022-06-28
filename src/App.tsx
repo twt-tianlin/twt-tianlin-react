@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import AppHeader from "./components/AppHeader";
 import AppFooter from "./components/AppFooter";
 import header from "./images/header.png";
@@ -25,7 +25,7 @@ const HeaderBox = styled.div`
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <HashRouter>
         <AppHeader />
         <HeaderBox>
           <img src={header} alt="" style={{objectFit:"contain",width:"100%"}} />
@@ -43,7 +43,7 @@ function App() {
           <Route path="/checkProcess" element={<CheckProcess />}></Route>
           <Route path="/applierDetail/:id" element={<ApplierDetail />}></Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
       <AppFooter />
     </div>
   );

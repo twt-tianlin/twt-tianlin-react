@@ -1,10 +1,14 @@
-import React from "react";
-import {useParams} from "react-router-dom";
+import React, {MouseEventHandler} from "react";
+import {useNavigate, useParams} from "react-router-dom";
 import {useEffect} from "react";
 import {getNoticeDetail} from "../api/notice";
 import {Typography, Card, Divider, Button} from "antd";
 import {useState} from "react";
 import styled from "styled-components";
+import {useAppSelector} from "../app/hooks";
+import {selectUser} from "../features/user/userSlice";
+import {deleteNoticeApi} from "../api/notice";
+import {message} from "antd";
 
 const {Title, Paragraph, Text} = Typography;
 
@@ -24,6 +28,8 @@ export default function NoticeDetail() {
     }
     const params = useParams();
     const [notice, setNotice] = useState<any>(initialTitle);
+    const user = useAppSelector(selectUser)
+    const navigate = useNavigate()
 
     // 根据路由参数 请求公告的详情
     useEffect(() => {
@@ -34,6 +40,17 @@ export default function NoticeDetail() {
 
         fetchData(params.id || '')
     }, [params.id]);
+
+    // 删除公告按钮
+    const deleteNotice = () => {
+        deleteNoticeApi(notice.id).then((res: any) => {
+            const data = res.data
+            if (data.state === 200) {
+                message.success("删除成功")
+                navigate(-1)
+            }
+        })
+    }
 
 
     return (
@@ -48,6 +65,12 @@ export default function NoticeDetail() {
                                        onClick={() => window.open("http://localhost:8080/api/download/notice/attachment?filePath=" + notice.filePath)}> {notice.filePath.substring(notice.filePath.lastIndexOf("/") + 1)} </Button> 】</Text>
                     <br/>
                     <Text italic>{notice.updatedAt}</Text>
+
+                    {user.role === "admin" && (
+                        <>  <br/>
+                            <Button danger onClick={deleteNotice}>删除公告</Button>
+                        </>
+                        )}
                 </Paragraph>
             </Card>
         </NoticeDetailBox>

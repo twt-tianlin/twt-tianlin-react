@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 
 import styled from "styled-components";
 
-const LoginBox = styled.div`
+const RegisterBox = styled.div`
   height: 330px;
   width: 600px;
   margin: 20px auto;
@@ -31,7 +31,7 @@ export const Register: React.FC = () => {
   };
 
   return (
-    <LoginBox>
+    <RegisterBox>
       {/*将注册框视为卡片*/}
       <Card
         title="注册"
@@ -87,6 +87,6 @@ export const Register: React.FC = () => {
           </Form.Item>
         </Form>
       </Card>
-    </LoginBox>
+    </RegisterBox>
   );
 };

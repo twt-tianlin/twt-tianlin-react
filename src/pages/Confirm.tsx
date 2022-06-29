@@ -17,12 +17,14 @@ const ConfirmInfoBox = styled.div`
 `;
 
 export default function Confirm() {
+  // Hook
   const [confirmTrain, setConfirmTrain] = useState<boolean>(false);
   const [needBed, setNeedBed] = useState<boolean>(false);
-  const user = useSelector(selectUser)
-
   const navigate = useNavigate()
 
+  const user = useSelector(selectUser)
+
+  // 首次渲染 判断用户是否被录取
   useEffect(()=>{
     getStatus().then((res:any)=>{
       if(!res.data.data.confirm){
@@ -39,6 +41,7 @@ export default function Confirm() {
     })
   },[navigate,user.uid])
 
+  // 是否确认能参加培训
   const changeConfirm = (e: RadioChangeEvent) => {
     if (e.target.value === "1") {
       setConfirmTrain(true);
@@ -46,6 +49,8 @@ export default function Confirm() {
       setConfirmTrain(false);
     }
   };
+
+  // 是否需要卧具
   const changeNeedBed = (e: RadioChangeEvent) => {
     if (e.target.value === "1") {
       setNeedBed(true);
@@ -54,10 +59,9 @@ export default function Confirm() {
     }
   };
 
+  // 提交确认信息按钮
   const onFinish = (data: any) => {
-
     data.uid=user.uid
-    console.log(data)
     confirmInfo(data)
       .then((res) => {
         let data = res.data;

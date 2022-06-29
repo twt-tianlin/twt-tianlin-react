@@ -28,3 +28,10 @@ export function publishNotice(data:any){
         data
     })
 }
+
+export function deleteNoticeApi(id:number){
+    return service({
+        method: 'delete',
+        url: `/notice/${id}`
+    })
+}

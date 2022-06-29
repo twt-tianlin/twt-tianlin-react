@@ -1,106 +1,113 @@
 import React from 'react'
-import { Button, Form, Input, Card, message ,Upload} from "antd";
-import { UploadOutlined } from "@ant-design/icons";
-import type { UploadProps } from "antd";
+import {Button, Form, Input, Card, message, Upload} from "antd";
+import {UploadOutlined} from "@ant-design/icons";
+import type {UploadProps} from "antd";
 import styled from "styled-components";
-import { publishNotice } from '../api/notice';
-import { useNavigate } from 'react-router-dom';
-const { TextArea} = Input;
+import {publishNotice} from '../api/notice';
+import {useNavigate} from 'react-router-dom';
 
-const LoginBox = styled.div`
-  width: 50%;
+
+const {TextArea} = Input;
+
+const PublishNoticeBox = styled.div`
+  width: 45%;
   margin: 20px auto;
   text-align: center;
 `;
-    
-export default function PublishNotice() {
-  const navigate=useNavigate()
 
+export default function PublishNotice() {
     let filePath = "";
+
+    // Hook
+    const navigate = useNavigate()
 
     const uploadFile: UploadProps = {
         name: "file",
         action: "http://localhost:8080/api/upload/notice",
         onChange(info) {
-          if (info.file.status !== "uploading") {
-            filePath = info.file.response;
-          }
-          if (info.file.status === "done") {
-            message.success(`${info.file.name} file uploaded successfully`);
-          } else if (info.file.status === "error") {
-            message.error(`${info.file.name} file upload failed.`);
-          }
+            if (info.file.status !== "uploading") {
+                filePath = info.file.response;
+            }
+            if (info.file.status === "done") {
+                message.success(`${info.file.name} file uploaded successfully`);
+            } else if (info.file.status === "error") {
+                message.error(`${info.file.name} file upload failed.`);
+            }
         },
-      };
+    };
 
-
+    // 完成时
     const onFinish = (data: any) => {
-        let noticeData:any = {...data}
-        noticeData.filePath=filePath;
+        let noticeData: any = {...data}
+        noticeData.filePath = filePath;
 
         publishNotice(noticeData)
-          .then((res) => {
-            let data = res.data;
-            if (data.state === 200) {
-              message.success("发布成功");
-              navigate('/')
-            } else {
-              message.error(data.msg);
-            }
-          })
-          .catch(() => {
-            message.error("系统异常 请联系管理员");
-          });
-      };
-  return (
-    <LoginBox>
-      <Card
-        title="发布公告"
-        style={{ backgroundColor: "#fcfcfc" }}
-        hoverable={true}
-      >
-        <br />
-        <Form
-          name="basic"
-          labelCol={{ span: 6 }}
-          wrapperCol={{ span: 15 }}
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-          autoComplete="off"
-        >
-          <div>
-            <Form.Item
-              label="标题"
-              name="title"
-              rules={[{ required: true, message: "请输入标题" }]}
+            .then((res) => {
+                let data = res.data;
+                if (data.state === 200) {
+                    message.success("发布成功");
+                    navigate('/')
+                } else {
+                    message.error(data.msg);
+                }
+            })
+            .catch(() => {
+                message.error("系统异常 请联系管理员");
+            });
+    };
+    return (
+        <PublishNoticeBox>
+            {/*将这个发布框视为Card*/}
+            <Card
+                title="发布公告"
+                style={{backgroundColor: "#fcfcfc"}}
             >
-              <Input />
-            </Form.Item>
+                <br/>
+                {/*表单*/}
+                <Form
+                    name="basic"
+                    labelCol={{span: 6}}
+                    wrapperCol={{span: 15}}
+                    onFinish={onFinish}
+                >
+                    {/*输入标题和内容*/}
+                    <div>
+                        <Form.Item
+                            label="标题"
+                            name="title"
+                            rules={[{required: true, message: "请输入标题"}]}
+                        >
+                            <Input size={"middle"}/>
+                        </Form.Item>
 
-            <Form.Item
-              label="内容"
-              name="content"
-              rules={[{ required: true, message: "请输入内容" }]}
-            >
-              <TextArea rows={4} />
-            </Form.Item>
-          </div>
+                        <Form.Item
+                            label="内容"
+                            name="content"
+                            rules={[{required: true, message: "请输入内容"}]}
+                        >
+                            <TextArea rows={5}/>
+                        </Form.Item>
+                    </div>
 
-          <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
-            <Upload {...uploadFile}>
-              <Button icon={<UploadOutlined />}>
-                上传附件
-              </Button>
-            </Upload>
-          </Form.Item>
+                    {/*上传附件*/}
+                    <Form.Item wrapperCol={{offset: 4, span: 16}}>
+                        <Upload {...uploadFile}>
+                            <Button icon={<UploadOutlined/>}>
+                                上传附件
+                            </Button>
+                        </Upload>
+                    </Form.Item>
 
-          <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
-            <Button type="primary" htmlType="submit">
-              发布公告
-            </Button>
-          </Form.Item>
-        </Form>
-      </Card>
-    </LoginBox>
-  )
+                    {/*发布按钮*/}
+                    <Form.Item wrapperCol={{offset: 4, span: 16}}>
+                        <Button type="primary" htmlType="submit">
+                            发布公告
+                        </Button>
+                    </Form.Item>
+
+                </Form>
+
+            </Card>
+        </PublishNoticeBox>
+    )
 }

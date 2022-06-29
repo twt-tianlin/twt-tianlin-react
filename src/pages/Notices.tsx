@@ -43,17 +43,6 @@ export default function Notices() {
                         <p style={{textAlign:`right`,marginRight:`10%`}}>{notice.updatedAt}</p>
                         <br></br>
                     </div>
-                    // <Card key={notice.id} bordered={false} style={{display: "flex" , justifyContent: "center"}}>
-                    //     <Paragraph style={{width:`100%`}}>
-                    //         <Title level={5}>
-                    //             <Link to={`/notice/${notice.id}`}>{notice.title}</Link>
-                    //         </Title>
-                    //         {notice.content}
-                    //         <br/>
-                    //         <br/>
-                    //         <Text italic style={{display: "flex", justifyContent: "end"}}>{notice.updatedAt}</Text>
-                    //     </Paragraph>
-                    // </Card>
                 );
             })}
         </NoticesBox>

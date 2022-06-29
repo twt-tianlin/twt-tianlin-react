@@ -199,7 +199,6 @@ export default function ApplierDetail() {
           <Button>{applier.admit}</Button>
         </Popconfirm>
       )}
-
       <br />
     </div>
   );

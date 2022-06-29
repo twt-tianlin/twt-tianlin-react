@@ -8,45 +8,46 @@ import { selectUser } from "../features/user/userSlice";
 
 const LoginBox = styled.div`
   height: 300px;
-  width: 520px;
+  width: 600px;
   margin: 20px auto;
   text-align: center;
 `;
 
 export const Login: React.FC = () => {
+  // Hook
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const user = useAppSelector(selectUser)
 
+  // 若已经登录 则跳转到首页
   if(user.uid!==0){
     navigate('/')
   }
 
+  // 登录
   const onFinish = (data: any) => {
     dispatch(changeUserInfo(data))
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
-  };
+
 
   return (
     <LoginBox>
+      {/*将登录框视为卡片*/}
       <Card
         title="登录"
         style={{ backgroundColor: "#fcfcfc" }}
-        hoverable={true}
       >
         <br />
+        {/*Form表单*/}
         <Form
-          name="basic"
+          name="login"
           labelCol={{ span: 6 }}
           wrapperCol={{ span: 15 }}
-          initialValues={{ remember: true }}
           onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-          autoComplete="off"
         >
+
+          {/*需要填写邮箱和密码*/}
           <div>
             <Form.Item
               label="邮箱"
@@ -65,6 +66,7 @@ export const Login: React.FC = () => {
             </Form.Item>
           </div>
 
+          {/*登录按钮*/}
           <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
             <Button type="primary" htmlType="submit">
               登录

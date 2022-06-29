@@ -7,45 +7,46 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import styled from "styled-components";
 
 const LoginBox = styled.div`
-  height: 400px;
-  width: 520px;
+  height: 330px;
+  width: 600px;
   margin: 20px auto;
+  margin-bottom: 100px;
   text-align: center;
 `;
 
 export const Register: React.FC = () => {
+  // Hook
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser)
+
+  // 如果已经登录则返回首页
   if(user.uid!==0){
     navigate('/')
   }
-  
+
+  // 注册
   const onFinish = (data: any) => {
     dispatch(autoChangeUserInfo(data))
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
-  };
-
   return (
     <LoginBox>
+      {/*将注册框视为卡片*/}
       <Card
         title="注册"
         style={{ backgroundColor: "#fcfcfc" }}
-        hoverable={true}
       >
         <br />
+        {/*Form表单*/}
         <Form
-          name="basic"
+          name="register"
           labelCol={{ span: 6 }}
           wrapperCol={{ span: 15 }}
-          initialValues={{ remember: true }}
           onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-          autoComplete="off"
         >
+
+          {/*注册需要的信息*/}
           <div>
             <Form.Item
               label="姓名"
@@ -78,6 +79,7 @@ export const Register: React.FC = () => {
             </Form.Item>
           </div>
 
+          {/*注册按钮*/}
           <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
             <Button type="primary" htmlType="submit">
               注册

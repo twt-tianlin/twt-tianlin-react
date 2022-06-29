@@ -94,7 +94,7 @@ export default function ApplierDetail() {
       <Image
         width={200}
         src={
-          "http://8.141.161.245:8080/api/download/applier/photo?filePath=" +
+          "http://localhost:8080/api/download/applier/photo?filePath=" +
           applier.photoPath
         }
       />
@@ -165,7 +165,7 @@ export default function ApplierDetail() {
       <Button
         onClick={() =>
           window.open(
-            "http://8.141.161.245:8080/api/download/applier/file?filePath=" +
+            "http://localhost:8080/api/download/applier/file?filePath=" +
               applier.filePath
           )
         }

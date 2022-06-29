@@ -28,9 +28,10 @@ function App() {
       <HashRouter>
         <AppHeader />
         <HeaderBox>
-          <img src={header} alt="" style={{objectFit:"contain",width:"100%"}} />
+          <img src={header} alt="" style={{objectFit:"contain",width:"100%",height:"20%"}} />
         </HeaderBox>
 
+        <div style={{width:`70%`,marginLeft:`18%`}}>
         <Routes>
           <Route index element={<Main />}></Route>
           <Route path="/login" element={<Login />}></Route>
@@ -43,7 +44,10 @@ function App() {
           <Route path="/checkProcess" element={<CheckProcess />}></Route>
           <Route path="/applierDetail/:id" element={<ApplierDetail />}></Route>
         </Routes>
+        </div>
+       
       </HashRouter>
+
       <AppFooter />
     </div>
   );

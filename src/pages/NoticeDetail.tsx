@@ -45,7 +45,7 @@ export default function NoticeDetail() {
                     <Title level={5}>{notice.title}</Title>
                     <p>{notice.content}</p>
                     <Text>附件 【 <Button type="link"
-                                       onClick={() => window.open("http://localhost:8080/api/download/notice/attachment?filePath=" + notice.filePath)}> {notice.filePath.substring(notice.filePath.lastIndexOf("/") + 1)} </Button> 】</Text>
+                                       onClick={() => window.open("http://8.141.161.245:8080/api/download/notice/attachment?filePath=" + notice.filePath)}> {notice.filePath.substring(notice.filePath.lastIndexOf("/") + 1)} </Button> 】</Text>
                     <br/>
                     <Text italic>{notice.updatedAt}</Text>
                 </Paragraph>

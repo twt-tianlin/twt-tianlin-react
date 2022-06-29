@@ -20,7 +20,7 @@ export default function PublishNotice() {
 
     const uploadFile: UploadProps = {
         name: "file",
-        action: "http://localhost:8080/api/upload/notice",
+        action: "http://8.141.161.245:8080/api/upload/notice",
         onChange(info) {
           if (info.file.status !== "uploading") {
             filePath = info.file.response;

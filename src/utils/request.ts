@@ -2,7 +2,7 @@ import { message } from "antd";
 import axios from "axios";
 
 const service = axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: "http://8.141.161.245:8080/api",
   timeout: 10000,
 });
 

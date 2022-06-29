@@ -18,6 +18,7 @@ const ButtonBox = styled.div`
   float: right;
 `;
 
+
 const {Header} = Layout;
 
 
@@ -53,19 +54,23 @@ export default function AppHeader() {
         return (
             <>
                 <HeaderBox >
-                    <Header style={{backgroundColor: "#f5f8fa"}}>
+                    <Header style={{backgroundColor: "#f5f8fa",height:`90px`}}>
 
                         {/*logo图片*/}
-                        <Link to={'/'}><img src={logo} alt=""/></Link>
+                        <div style={{width:`70%`,marginLeft:`20%`,height:`90px`,display: `flex`,justifyContent: `space-between`}}>
+                            <Link to={'/'}><img src={logo} alt=""/></Link>
+
+                            <div style={{display: `flex`,justifyContent: `space-between`}}>
+                                    <Link to="/login" style={{fontSize:`20px`,fontWeight:`bold`}}>登录</Link>
+                                    <p style={{fontSize:`20px`}}>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                    <Link to="/register" style={{fontSize:`20px`,fontWeight:`bold`}}>注册</Link>
+                            </div>
+                            {/* <ButtonBox>
+                               
+                            </ButtonBox> */}
+                        </div>
                         {/*登录和注册按钮*/}
-                        <ButtonBox>
-                            <Button >
-                                <Link to="/login">登录</Link>
-                            </Button>
-                            <Button>
-                                <Link to="/register">注册</Link>
-                            </Button>
-                        </ButtonBox>
+                        
 
                     </Header>
                 </HeaderBox>
@@ -77,16 +82,16 @@ export default function AppHeader() {
         return (
             <>
                 <HeaderBox>
-                    <Header style={{backgroundColor: "white"}}>
-                        <img src={logo} alt=""/>
+                    <Header style={{backgroundColor: "#f5f8fa",height:`90px`}}>
 
-                        <ButtonBox>
-                            <Button style={{fontSize: "100%", marginRight: "5px"}} type={"text"}>{name}</Button>
+                        <div style={{width:`70%`,marginLeft:`20%`,height:`90px`,display: `flex`,justifyContent: `space-between`}}>
+                            <Link to={'/'}><img src={logo} alt=""/></Link>
+                            <div>
+                            <Button style={{fontSize: "20px", marginRight: "5px"}} type={"text"}>{name}</Button>
+                            <Button onClick={logoutButton} style={{fontSize:`20px`,fontWeight:`bold`}} className="exit"> 退出</Button>
+                            </div>
 
-                            <Button onClick={logoutButton}>
-                                退出
-                            </Button>
-                        </ButtonBox>
+                        </div>
                     </Header>
                 </HeaderBox>
             </>

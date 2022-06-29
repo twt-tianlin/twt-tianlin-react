@@ -67,13 +67,17 @@ export default function Main() {
                                 <div>
                                     {homeNotices?.map((notice) => {
                                         return (
-                                            <NoticesBox key={notice.id}>
-                                                <Link to={`/notice/${notice.id}`}>
-                                                    {notice.title}
-                                                </Link>
-                                                {notice.createdAt}
-                                                <br/>
-                                            </NoticesBox>
+                                         
+
+                                            <div>
+                                                <NoticesBox key={notice.id}>
+                                                    <Link to={`/notice/${notice.id}`}>
+                                                        {notice.title}
+                                                    </Link>
+                                                    {notice.createdAt}
+                                                    <br/>
+                                                </NoticesBox>
+                                            </div>
                                         );
                                     })}
                                 </div>

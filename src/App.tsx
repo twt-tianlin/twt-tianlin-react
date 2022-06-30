@@ -24,14 +24,14 @@ const HeaderBox = styled.div`
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{minHeight:`100px`,marginBottom:`0`}}>
       <HashRouter>
         <AppHeader />
         <HeaderBox>
           <img src={header} alt="" style={{objectFit:"contain",width:"100%",height:"20%"}} />
         </HeaderBox>
 
-        <div style={{width:`70%`,marginLeft:`14%`}}>
+        <div style={{width:`70%`,marginLeft:`14%`,minHeight:`450px`}}>
           <Routes>
             <Route index element={<Main />}></Route>
             <Route path="/login" element={<Login />}></Route>

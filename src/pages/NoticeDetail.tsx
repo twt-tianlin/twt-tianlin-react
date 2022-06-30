@@ -57,12 +57,20 @@ export default function NoticeDetail() {
         <NoticeDetailBox>
             <Card>
                 <Paragraph>
-                    <Title level={3}>公告</Title>
+                    <Title level={3} style={{color:`#344B77`}}>公告</Title>
                     <Divider/>
-                    <Title level={5}>{notice.title}</Title>
-                    <p>{notice.content}</p>
-                    <Text>附件 【 <Button type="link"
-                                       onClick={() => window.open("http://8.141.161.245:8080/api/download/notice/attachment?filePath=" + notice.filePath)}> {notice.filePath.substring(notice.filePath.lastIndexOf("/") + 1)} </Button> 】</Text>
+                    <Title level={5} style={{textAlign: `left`}}>{notice.title}</Title>
+                    <div style={{textAlign: `left`}}><p>{notice.content}</p></div>
+                    <div style={{textAlign: `left`}}>
+                    <Text>
+                        附件 【 
+                        <Button type="link"
+                                onClick={() => window.open("http://8.141.161.245:8080/api/download/notice/attachment?filePath=" + notice.filePath)}> {notice.filePath.substring(notice.filePath.lastIndexOf("/") + 1)} 
+                        </Button> 
+                        】
+                    </Text>
+                    </div>
+                    
                     <br/>
                     <Text italic>{notice.updatedAt}</Text>
 

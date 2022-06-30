@@ -29,6 +29,7 @@ export default function Notices() {
                 display: "flex",
                 justifyContent: "center",
                 paddingTop: "20px",
+                color:`#344B77`,
             }}>公告</Title>
 
             <Divider/>
@@ -36,11 +37,13 @@ export default function Notices() {
 
             {notices?.map((notice) => {
                 return (
-                    <div style={{marginLeft:`28%`,marginTop:`10px`,width:`50%`}}>
+                    <div style={{marginLeft:`10%`,marginTop:`10px`,width:`80%`}}>
                         <br></br>
-                        <h2><Link to={`/notice/${notice.id}`} style={{color:`#344B77`}}>{notice.title}</Link></h2>
+                        <h2>
+                            <Link to={`/notice/${notice.id}`} style={{color:`#344B77`,textAlign: `left`}}>{notice.title}</Link>
+                        </h2>
                         <p>{notice.content}</p>
-                        <p style={{textAlign:`right`,marginRight:`10%`}}>{notice.updatedAt}</p>
+                        <p style={{textAlign:`right`,marginRight:`5%`,color:`#344B77`}}>{notice.updatedAt}</p>
                         <br></br>
                     </div>
                 );

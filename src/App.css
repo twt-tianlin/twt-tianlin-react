@@ -27,3 +27,18 @@
     text-decoration:underline;
     transition: all 5s;
 }
+
+*p
+{
+    color: #344B77;
+}
+
+
+#root
+{
+    height: 100%;
+}
+
+*{
+    color:#344B77
+}

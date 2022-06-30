@@ -35,7 +35,8 @@ export default function Main() {
 
     return (
         <>
-            <div className="site-card-wrapper" style={{backgroundColor:"#f5f8fa",marginTop:"30px",marginLeft:`10%`}}>
+            {/* <div className="site-card-wrapper" style={{backgroundColor:"#f5f8fa",marginTop:"30px",marginLeft:`10%`,minHeight:`00%`}}> */}
+            <div className="site-card-wrapper" style={{backgroundColor:"#f5f8fa",marginBottom:"30px",marginLeft:`10%`,minHeight:`450px`}}>
                 <Row justify="center" style={{width:"100%"}}>
 
                     <Col span={7}>
@@ -43,10 +44,8 @@ export default function Main() {
                             <Card title="功能" bordered={false} style={{backgroundColor:"#f5f8fa"}}>
                                 {/* 普通用户的按钮 */}
                                 {user.role === "user" && <UserButton/>}
-
                                 {/* 管理员的按钮 */}
                                 {user.role === "admin" && <AdminButton/>}
-
                                 {/* 未登录按钮 */}
                                 {user.role === "" && <NoLoginButton/>}
                             </Card>
@@ -60,21 +59,30 @@ export default function Main() {
                             <Card
                                 title="公告"
                                 bordered={false}
-                                extra={<Link to="/notices">更多</Link>}
+                                extra={<Link to="/notices" style={{color:`#344B77`}}>更多</Link>}
                                 style={{backgroundColor:"#f5f8fa"}}
                             >
                                 <div>
                                     {homeNotices?.map((notice) => {
+
+                                        let res=notice.title;
+                                        let len=30;
+                                        if( notice.title.length>len)
+                                        {
+                                            res=notice.title.slice(0,len);
+                                            res+="..."
+                                        }
+
                                         return (
                                             <div key={notice.id} style={{}}>
 
                                                 <NoticesBox key={notice.id} style={{width:`100%`,display:`flex`,justifyContent:`space-between`}}>
                                                     <div style={{width:`80%`}}>
                                                         <Link to={`/notice/${notice.id}`} style={{color:`#344B77`}} className="link">
-                                                            {notice.title}
+                                                            {res}
                                                         </Link>
                                                     </div>
-                                                    <div style={{width:`20%`,color:`#344B77`,}}>
+                                                    <div style={{width:`20%`,color:`#344B77`,marginLeft:`10%`}}>
                                                         {notice.createdAt}
                                                     </div>
                                                     

@@ -16,3 +16,14 @@
     background-color: #f5f8fa;
 }
 
+.link
+{
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.link:hover
+{
+    text-decoration:underline;
+    transition: all 5s;
+}

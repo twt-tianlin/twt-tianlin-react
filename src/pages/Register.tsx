@@ -7,8 +7,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import styled from "styled-components";
 
 const RegisterBox = styled.div`
-  height: 330px;
-  width: 600px;
+  width: 70%;
   margin: 20px auto;
   margin-bottom: 100px;
   text-align: center;

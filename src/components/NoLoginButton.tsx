@@ -10,7 +10,7 @@ const UserButtonBox = styled.div`
 
 export default function NoLoginButton() {
     return (
-        <div>
+        <div >
             <UserButtonBox>
                 <Button  style={{ marginTop:"20px",backgroundColor:"#f5f8fa" }} shape={"round"} size={"large"}>
                     <Link to={"/login"} style={{color:"#005180"}}>登录</Link>

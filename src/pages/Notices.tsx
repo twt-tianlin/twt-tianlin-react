@@ -38,7 +38,7 @@ export default function Notices() {
                 return (
                     <div style={{marginLeft:`28%`,marginTop:`10px`,width:`50%`}}>
                         <br></br>
-                        <h2><Link to={`/notice/${notice.id}`}>{notice.title}</Link></h2>
+                        <h2><Link to={`/notice/${notice.id}`} style={{color:`#344B77`}}>{notice.title}</Link></h2>
                         <p>{notice.content}</p>
                         <p style={{textAlign:`right`,marginRight:`10%`}}>{notice.updatedAt}</p>
                         <br></br>

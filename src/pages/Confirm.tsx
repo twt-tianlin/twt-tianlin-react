@@ -77,13 +77,14 @@ export default function Confirm() {
     };
 
     return (
-        <ConfirmInfoBox>
+        <ConfirmInfoBox style={{width:`90%`}}>
             <Card
                 title="确认信息"
                 style={{backgroundColor: "#fcfcfc"}}
             >
                 <br/>
                 <Form
+                    id="suda"
                     name="basic"
                     labelCol={{span: 5}}
                     wrapperCol={{span: 15}}
@@ -105,8 +106,8 @@ export default function Confirm() {
                         <Input/>
                     </Form.Item>
 
-                    <Form.Item label="是否确认能够参加此次培训" name="isJoin" rules={[{required: true, message: "请确认是否能参加"}]}>
-                        <Radio.Group onChange={changeConfirm}>
+                    <Form.Item label="是否能够参加此次培训" name="isJoin" rules={[{required: true, message: "请确认是否能参加"}]} style={{width:`100%`}}>
+                        <Radio.Group onChange={changeConfirm} style={{float:`left`}}>
                             <Radio value="1"> 是 </Radio>
                             <Radio value="2"> 否 </Radio>
                         </Radio.Group>
@@ -114,7 +115,7 @@ export default function Confirm() {
 
                     {confirmTrain && (
                         <Form.Item label="是否需要购买卧具" name="buy" rules={[{required: true, message: "请确认是否需要购买卧具"}]}>
-                            <Radio.Group onChange={changeNeedBed}>
+                            <Radio.Group onChange={changeNeedBed} style={{float:`left`}}>
                                 <Radio value="1"> 是 </Radio>
                                 <Radio value="2"> 否 </Radio>
                             </Radio.Group>
@@ -123,60 +124,62 @@ export default function Confirm() {
 
                     {needBed && confirmTrain && (
                         <Form.Item name="bedNeed" label="卧具" rules={[{required: true, message: "请选择卧具"}]}>
+                            <div style={{float:`left`}}>
                             <Checkbox.Group>
                                 <Row>
-                                    <Col span={8}>
+                                    <Col span={4}>
                                         <Checkbox value="棕垫" style={{lineHeight: "32px"}}>
                                             棕垫
                                         </Checkbox>
                                     </Col>
-                                    <Col span={8}>
+                                    <Col span={4}>
                                         <Checkbox value="棉被" style={{lineHeight: "32px"}}>
                                             棉被
                                         </Checkbox>
                                     </Col>
-                                    <Col span={8}>
+                                    <Col span={4}>
                                         <Checkbox value="棉褥" style={{lineHeight: "32px"}}>
                                             棉褥
                                         </Checkbox>
                                     </Col>
-                                    <Col span={8}>
+                                    <Col span={4}>
                                         <Checkbox value="被罩" style={{lineHeight: "32px"}}>
                                             被罩
                                         </Checkbox>
                                     </Col>
-                                    <Col span={8}>
+                                    <Col span={4}>
                                         <Checkbox value="床单" style={{lineHeight: "32px"}}>
                                             床单
                                         </Checkbox>
                                     </Col>
-                                    <Col span={8}>
+                                    <Col span={4}>
                                         <Checkbox value="枕头" style={{lineHeight: "32px"}}>
                                             枕头
                                         </Checkbox>
                                     </Col>
-                                    <Col span={8}>
+                                    <Col span={4}>
                                         <Checkbox value="枕巾" style={{lineHeight: "32px"}}>
                                             枕巾
                                         </Checkbox>
                                     </Col>
-                                    <Col span={8}>
+                                    <Col span={4}>
                                         <Checkbox value="枕套" style={{lineHeight: "32px"}}>
                                             枕套
                                         </Checkbox>
                                     </Col>
-                                    <Col span={8}>
+                                    <Col span={4}>
                                         <Checkbox value="蚊帐" style={{lineHeight: "32px"}}>
                                             蚊帐
                                         </Checkbox>
                                     </Col>
-                                    <Col span={8}>
+                                    <Col span={4}>
                                         <Checkbox value="凉被" style={{lineHeight: "32px"}}>
                                             凉被
                                         </Checkbox>
                                     </Col>
                                 </Row>
                             </Checkbox.Group>
+                        </div>
                         </Form.Item>
                     )}
 
@@ -214,7 +217,7 @@ export default function Confirm() {
                             </Form.Item>
                             <Form.Item label="是否需要接站" name="isNeedPickUp"
                                        rules={[{required: true, message: "请选择是否需要接站"}]}>
-                                <Radio.Group>
+                                <Radio.Group style={{float:`left`}}>
                                     <Radio value="1"> 是 </Radio>
                                     <Radio value="2"> 否 </Radio>
                                 </Radio.Group>
@@ -222,7 +225,7 @@ export default function Confirm() {
 
                             <Form.Item label="陪同人数" name="accompanyNumber"
                                        rules={[{required: true, message: "请输入陪同人数"}]}>
-                                <InputNumber/>
+                                <InputNumber style={{float:`left`}}/>
                             </Form.Item>
                         </>
                     )}

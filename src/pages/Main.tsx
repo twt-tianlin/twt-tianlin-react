@@ -10,6 +10,7 @@ import AdminButton from "../components/AdminButton";
 import UserButton from "../components/UserButton";
 import styled from "styled-components";
 import NoLoginButton from "../components/NoLoginButton";
+import "../App.css"
 
 const FunctionAndNoticeBox = styled.div`
 `;
@@ -34,7 +35,7 @@ export default function Main() {
 
     return (
         <>
-            <div className="site-card-wrapper" style={{backgroundColor:"#f5f8fa",marginTop:"30px"}}>
+            <div className="site-card-wrapper" style={{backgroundColor:"#f5f8fa",marginTop:"30px",marginLeft:`10%`}}>
                 <Row justify="center" style={{width:"100%"}}>
 
                     <Col span={7}>
@@ -65,12 +66,18 @@ export default function Main() {
                                 <div>
                                     {homeNotices?.map((notice) => {
                                         return (
-                                            <div key={notice.id}>
-                                                <NoticesBox key={notice.id}>
-                                                    <Link to={`/notice/${notice.id}`}>
-                                                        {notice.title}
-                                                    </Link>
-                                                    {notice.createdAt}
+                                            <div key={notice.id} style={{}}>
+
+                                                <NoticesBox key={notice.id} style={{width:`100%`,display:`flex`,justifyContent:`space-between`}}>
+                                                    <div style={{width:`80%`}}>
+                                                        <Link to={`/notice/${notice.id}`} style={{color:`#344B77`}} className="link">
+                                                            {notice.title}
+                                                        </Link>
+                                                    </div>
+                                                    <div style={{width:`20%`,color:`#344B77`,}}>
+                                                        {notice.createdAt}
+                                                    </div>
+                                                    
                                                     <br/>
                                                 </NoticesBox>
                                             </div>

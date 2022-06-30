@@ -31,19 +31,19 @@ function App() {
           <img src={header} alt="" style={{objectFit:"contain",width:"100%",height:"20%"}} />
         </HeaderBox>
 
-        <div style={{width:`70%`,marginLeft:`15%`}}>
-        <Routes>
-          <Route index element={<Main />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/register" element={<Register />}></Route>
-          <Route path="/apply" element={<Apply />}></Route>
-          <Route path="/confirm" element={<Confirm />}></Route>
-          <Route path="/notices" element={<Notices />}></Route>
-          <Route path="/notice/:id" element={<NoticeDetail />}></Route>
-          <Route path="/publishNotice" element={<PublishNotice />}></Route>
-          <Route path="/checkProcess" element={<CheckProcess />}></Route>
-          <Route path="/applierDetail/:id" element={<ApplierDetail />}></Route>
-        </Routes>
+        <div style={{width:`70%`,marginLeft:`14%`}}>
+          <Routes>
+            <Route index element={<Main />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/register" element={<Register />}></Route>
+            <Route path="/apply" element={<Apply />}></Route>
+            <Route path="/confirm" element={<Confirm />}></Route>
+            <Route path="/notices" element={<Notices />}></Route>
+            <Route path="/notice/:id" element={<NoticeDetail />}></Route>
+            <Route path="/publishNotice" element={<PublishNotice />}></Route>
+            <Route path="/checkProcess" element={<CheckProcess />}></Route>
+            <Route path="/applierDetail/:id" element={<ApplierDetail />}></Route>
+          </Routes>
         </div>
        
       </HashRouter>

@@ -151,7 +151,7 @@ export default function Apply() {
                     </Form.Item>
 
                     <Form.Item label="性别" name="gender" rules={[{ required: true, message: "请选择您的性别" }]}>
-                        <Radio.Group>
+                        <Radio.Group style={{float:`left`}}>
                             <Radio value="1"> 男 </Radio>
                             <Radio value="2"> 女 </Radio>
                         </Radio.Group>
@@ -170,13 +170,15 @@ export default function Apply() {
                     </Form.Item>
 
                     <Form.Item label="出生日期" name="birthDate">
-                        <ConfigProvider locale={locale}>
-                            <DatePicker
-                                defaultValue={moment(initBirthDate)}
-                                format="YYYY-MM-DD"
-                                value={moment(initBirthDate)}
-                            />
-                        </ConfigProvider>
+                        <div style={{float:`left`}}>
+                            <ConfigProvider locale={locale}>
+                                <DatePicker
+                                    defaultValue={moment(initBirthDate)}
+                                    format="YYYY-MM-DD"
+                                    value={moment(initBirthDate)}
+                                />
+                            </ConfigProvider>
+                        </div>
                     </Form.Item>
 
                     <Form.Item label="手机号码" name="phone" rules={[{ required: true, message: "请输入您的手机号码" }]}>
@@ -226,7 +228,7 @@ export default function Apply() {
                     )}
 
                     <Form.Item label="是否有入党意愿" name="partyWill" rules={[{ required: true, message: "请选择是否有入党意愿" }]}>
-                        <Radio.Group>
+                        <Radio.Group style={{float:`left`}}>
                             <Radio value="1"> 是 </Radio>
                             <Radio value="2"> 否 </Radio>
                         </Radio.Group>
@@ -237,10 +239,10 @@ export default function Apply() {
                     </Form.Item>
 
                     <Form.Item label="T恤尺寸" name="clothesSize" rules={[{ required: true, message: "请输入您的T恤尺寸" }]}>
-                        <Radio.Group>
-                            <Radio value="M(165)"> M(165) </Radio>
-                            <Radio value="L(170)"> L(170) </Radio>
-                            <Radio value="XL(175)"> XL(175) </Radio>
+                        <Radio.Group style={{display:`flex`, flexWrap:`wrap`}} >
+                            <Radio value="M(165)">   M(165) </Radio>
+                            <Radio value="L(170)">   L(170) </Radio>
+                            <Radio value="XL(175)">  XL(175) </Radio>
                             <Radio value="2XL(180)"> 2XL(180) </Radio>
                             <Radio value="3XL(185)"> 3XL(185) </Radio>
                             <Radio value="4XL(190)"> 4XL(190) </Radio>
@@ -267,18 +269,22 @@ export default function Apply() {
                         <TextArea rows={4}/>
                     </Form.Item>
 
-                    <Form.Item wrapperCol={{offset: 4, span: 16}} rules={[{ required: true, message: "请上传您的一寸免冠照片" }]}>
-                        <Upload {...uploadPhoto}>
-                            <Button icon={<UploadOutlined/>}>上传一寸免冠照片</Button>
-                        </Upload>
+                    <Form.Item wrapperCol={{offset: 0, span: 16}} label="上传一寸免冠照片" name="photo" rules={[{ required: true, message: "请上传您的一寸免冠照片" }]}>
+                        <div style={{float:`left`}} > 
+                                <Upload {...uploadPhoto}>
+                                    <Button icon={<UploadOutlined/>}> 上传照片 </Button>
+                                </Upload>
+                        </div>
                     </Form.Item>
 
-                    <Form.Item wrapperCol={{offset: 4, span: 16}} rules={[{ required: true, message: "请上传您的压缩文件" }]}>
-                        <Upload {...uploadFile}>
-                            <Button icon={<UploadOutlined/>}>
-                                上传相关资料压缩文件(rar/zip)
-                            </Button>
-                        </Upload>
+                    <Form.Item wrapperCol={{offset: 0, span: 16}} label="请上传您的压缩文件" name="zip"  rules={[{ required: true, message: "请上传您的压缩文件" }]}>
+                        <div style={{float:`left`}} > 
+                            <Upload {...uploadFile}>
+                                <Button icon={<UploadOutlined/>}>
+                                    上传文件(rar/zip)
+                                </Button>
+                            </Upload>
+                        </div>
                     </Form.Item>
 
                     <Form.Item wrapperCol={{offset: 4, span: 16}}>

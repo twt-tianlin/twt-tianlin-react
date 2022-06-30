@@ -59,8 +59,13 @@ export default function NoticeDetail() {
                 <Paragraph>
                     <Title level={3} style={{color:`#344B77`}}>公告</Title>
                     <Divider/>
-                    <Title level={5} style={{textAlign: `left`}}>{notice.title}</Title>
-                    <div style={{textAlign: `left`}}><p>{notice.content}</p></div>
+                    <Title level={5} style={{}}>{notice.title}</Title>
+
+                    <Text italic>{notice.updatedAt}</Text>
+                    
+                        <div style={{textAlign: `left`}}>
+                            <p>&emsp;&emsp;{notice.content}</p>
+                        </div>
                     <div style={{textAlign: `left`}}>
                     <Text>
                         附件 【 
@@ -72,7 +77,7 @@ export default function NoticeDetail() {
                     </div>
                     
                     <br/>
-                    <Text italic>{notice.updatedAt}</Text>
+                    
 
                     {user.role === "admin" && (
                         <>  <br/>

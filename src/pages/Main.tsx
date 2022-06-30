@@ -12,7 +12,6 @@ import styled from "styled-components";
 import NoLoginButton from "../components/NoLoginButton";
 
 const FunctionAndNoticeBox = styled.div`
-  height: 300px;
 `;
 
 const NoticesBox = styled.div`
@@ -36,10 +35,9 @@ export default function Main() {
     return (
         <>
             <div className="site-card-wrapper" style={{backgroundColor:"#f5f8fa",marginTop:"30px"}}>
-                <Row justify="center">
-                    <Col span={3}></Col>
+                <Row justify="center" style={{width:"100%"}}>
 
-                    <Col span={6}>
+                    <Col span={7}>
                         <FunctionAndNoticeBox >
                             <Card title="功能" bordered={false} style={{backgroundColor:"#f5f8fa"}}>
                                 {/* 普通用户的按钮 */}
@@ -54,9 +52,9 @@ export default function Main() {
                         </FunctionAndNoticeBox>
                     </Col>
 
-                    <Col span={1}></Col>
+                    <Col span={2}></Col>
 
-                    <Col span={10}>
+                    <Col span={13}>
                         <FunctionAndNoticeBox>
                             <Card
                                 title="公告"
@@ -67,9 +65,7 @@ export default function Main() {
                                 <div>
                                     {homeNotices?.map((notice) => {
                                         return (
-                                         
-
-                                            <div>
+                                            <div key={notice.id}>
                                                 <NoticesBox key={notice.id}>
                                                     <Link to={`/notice/${notice.id}`}>
                                                         {notice.title}
@@ -84,8 +80,7 @@ export default function Main() {
                             </Card>
                         </FunctionAndNoticeBox>
                     </Col>
-
-                    <Col span={4}></Col>
+                    <Col span={2}></Col>
                 </Row>
             </div>
         </>

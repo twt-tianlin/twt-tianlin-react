@@ -10,7 +10,7 @@ import {useNavigate} from 'react-router-dom';
 const {TextArea} = Input;
 
 const PublishNoticeBox = styled.div`
-  width: 45%;
+  width: 55%;
   margin: 20px auto;
   text-align: center;
 `;
@@ -23,7 +23,7 @@ export default function PublishNotice() {
 
     const uploadFile: UploadProps = {
         name: "file",
-        action: "http://8.141.161.245:8080/api/upload/notice",
+        action: "http://localhost:8080/api/upload/notice",
         onChange(info) {
             if (info.file.status !== "uploading") {
                 filePath = info.file.response;

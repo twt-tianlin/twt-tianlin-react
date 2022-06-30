@@ -7,8 +7,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { selectUser } from "../features/user/userSlice";
 
 const LoginBox = styled.div`
-  height: 300px;
-  width: 600px;
+  width: 45%;
   margin: 20px auto;
   text-align: center;
 `;

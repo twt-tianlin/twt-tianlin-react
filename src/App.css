@@ -3,53 +3,16 @@
 .ant-card-head-title{
     font-size: large;
     font-weight: bold;
+    color: #005187;
 }
 
 .ant-descriptions-title{
     text-align: center;
     font-size: x-large;
+    color: #005187;
 }
 
 .App{
     background-color: #f5f8fa;
 }
 
-.exit {
-    display: inline-block;
-    border-radius: 4px;
-    background-color: #f5f8fa;
-    border: none;
-    color: #0946a1;
-    text-align: center;
-    font-size: 20px;
-    padding: 1px;
-    width: 80px;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: 5px;
-  }
-  
-  .exit span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
-  }
-  
-  .exit span:after {
-    content: '»';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-  }
-  
-  .exit:hover span {
-    padding-right: 25px;
-  }
-  
-  .exit:hover span:after {
-    opacity: 1;
-    right: 0;
-  }

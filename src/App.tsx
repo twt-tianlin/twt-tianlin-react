@@ -31,7 +31,7 @@ function App() {
           <img src={header} alt="" style={{objectFit:"contain",width:"100%",height:"20%"}} />
         </HeaderBox>
 
-        <div style={{width:`70%`,marginLeft:`14%`,minHeight:`450px`}}>
+        <div style={{width:`70%`,marginLeft:`14%`,minHeight:`445px`}}>
           <Routes>
             <Route index element={<Main />}></Route>
             <Route path="/login" element={<Login />}></Route>

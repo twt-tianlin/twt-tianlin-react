@@ -42,21 +42,21 @@ export default function AppHeader() {
 
                         {/*logo图片*/}
                         <div style={{
-                            width: `70%`,
-                            marginLeft: `10%`,
+                            width: `60%`,
+                            marginLeft: `20%`,
                             height: `90px`,
                             display: `flex`,
                             justifyContent: `space-between`
-                        }}>
-                            <Link to={'/'}><img src={logo} alt="" style={{width: "100%"}}/></Link>
+                            }}>
+                                <Link to={'/'} style={{minWidth:`200px`}}><img src={logo} alt="" style={{width: "100%"}}/></Link>
 
-                            <div style={{display: `flex`, justifyContent: `space-between`, marginTop: "3%"}}>
-                                <Link to="/login" style={{fontSize: `120%`, fontWeight: `bold`}}>登录</Link>
-                                <p style={{fontSize: `20px`}}>&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                                <Link to="/register" style={{fontSize: `120%`, fontWeight: `bold`}}>注册</Link>
-                            </div>
-
+                                <div style={{display: `flex`, justifyContent: `space-between`, marginTop: "3%",minWidth:`100px`}}>
+                                    <Link to="/login" style={{fontSize: `120%`, fontWeight: `bold`}}>登录</Link>
+                                    <p style={{fontSize: `20px`}}>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                    <Link to="/register" style={{fontSize: `120%`, fontWeight: `bold`}}>注册</Link>
+                                </div>
                         </div>
+                        
 
                     </Header>
                 </HeaderBox>
@@ -71,19 +71,18 @@ export default function AppHeader() {
                     <Header style={{backgroundColor: "#f5f8fa", height: `90px`}}>
 
                         <div style={{
-                            width: `70%`,
-                            marginLeft: `10%`,
+                            width: `60%`,
+                            marginLeft: `20%`,
                             height: `90px`,
                             display: `flex`,
                             justifyContent: `space-between`
                         }}>
-                            <Link to={'/'}><img src={logo} alt="" style={{width: "100%"}}/></Link>
+                             <Link to={'/'} style={{minWidth:`200px`}}><img src={logo} alt="" style={{width: "100%"}}/></Link>
 
                             <div  style={{display: `flex`, justifyContent: `space-between`, marginTop: "3%"}}>
-                                <div style={{fontSize: "120%", marginRight: "12px"}}>{name}</div>
+                                <div style={{fontSize: "120%", marginRight: "10px"}}>{name}</div>
                                 <Button onClick={logoutButton} style={{marginTop:"16%",backgroundColor:"#f5f8fa"}} type={"link"} shape={"round"}> 退出</Button>
                             </div>
-
                         </div>
                     </Header>
                 </HeaderBox>

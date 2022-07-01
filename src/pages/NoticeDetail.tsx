@@ -70,7 +70,7 @@ export default function NoticeDetail() {
                     <Text>
                         附件 【 
                         <Button type="link"
-                                onClick={() => window.open("http://localhost:8080/api/download/notice/attachment?filePath=" + notice.filePath)}> {notice.filePath.substring(notice.filePath.lastIndexOf("/") + 1)} 
+                                onClick={() => window.open("http://8.141.161.245:8080/api/download/notice/attachment?filePath=" + notice.filePath)}> {notice.filePath.substring(notice.filePath.lastIndexOf("/") + 1)} 
                         </Button> 
                         】
                     </Text>

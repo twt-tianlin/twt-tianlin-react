@@ -59,7 +59,7 @@ export default function Main() {
                             <Card
                                 title="公告"
                                 bordered={false}
-                                extra={<Link to="/notices" style={{color:`#344B77`}}>更多</Link>}
+                                extra={<Link to="/notices" style={{color:`#344B77`}}>更多+</Link>}
                                 style={{backgroundColor:"#f5f8fa"}}
                             >
                                 <div>

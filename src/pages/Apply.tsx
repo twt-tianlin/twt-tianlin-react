@@ -93,7 +93,7 @@ export default function Apply() {
     // 上传一寸照片
     const uploadPhoto: UploadProps = {
         name: "file",
-        action: "http://localhost:8080/api/upload/photo",
+        action: "http://8.141.161.245:8080/api/upload/photo",
         onChange(info) {
             if (info.file.status !== "uploading") {
                 photoPath = info.file.response;
@@ -125,7 +125,7 @@ export default function Apply() {
     // 上传文件档案
     const uploadFile: UploadProps = {
         name: "file",
-        action: "http://localhost:8080/api/upload/file",
+        action: "http://8.141.161.245:8080/api/upload/file",
         onChange(info) {
             if (info.file.status !== "uploading") {
                 filePath = info.file.response;
@@ -279,14 +279,16 @@ export default function Apply() {
                     </Form.Item>
 
                     <Form.Item
-                        label="高中阶段任职/竞赛/活动经历(限80字)"
+                        className="lab"
+                        label="高中阶段任职/竞赛/活动经历&#10;(限80字)"
                         name="highSchoolExp"
                         rules={[{ required: true, message: "请输入您的高中经历" }]}
                     >
                         <TextArea rows={4}/>
                     </Form.Item>
 
-                    <Form.Item label="高中阶段所获荣誉(限80字):" name="highSchoolHonour" rules={[{ required: true, message: "请输入您高中所获荣誉" }]}>
+                    <Form.Item className="lab" label="高中阶段所获荣誉&#10;(限80字)" name="highSchoolHonour" rules={[{ required: true, message: "请输入您高中所获荣誉" }]}>
+
                         <TextArea rows={4}/>
                     </Form.Item>
 

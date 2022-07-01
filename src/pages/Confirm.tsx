@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Button, Form, Input, Card, message, Radio} from "antd";
+import {Button, Form, Input, Card, message, Radio, ConfigProvider, DatePicker} from "antd";
 import styled from "styled-components";
 import {confirmInfo} from "../api/confirm";
 import {RadioChangeEvent, Col, Checkbox, Row, InputNumber} from "antd";
@@ -8,6 +8,8 @@ import {getStatus} from "../api/status";
 import {useSelector} from "react-redux";
 import {selectUser} from "../features/user/userSlice";
 import {getUserAdmit} from "../api/apply";
+import locale from "antd/lib/locale/zh_CN";
+import moment from "moment";
 
 const ConfirmInfoBox = styled.div`
   width: 70%;
@@ -61,6 +63,8 @@ export default function Confirm() {
     // 提交确认信息按钮
     const onFinish = (data: any) => {
         data.uid = user.uid
+
+        data.timeToJin=moment(data.timeToJin).format('YYYY-MM-DD HH:mm')
         confirmInfo(data)
             .then((res) => {
                 let data = res.data;
@@ -77,7 +81,9 @@ export default function Confirm() {
     };
 
     return (
-        <ConfirmInfoBox style={{width:`90%`}}>
+        <ConfirmInfoBox style={{width: `90%`}}>
+            <ConfigProvider locale={locale}>
+
             <Card
                 title="确认信息"
                 style={{backgroundColor: "#fcfcfc"}}
@@ -106,8 +112,9 @@ export default function Confirm() {
                         <Input/>
                     </Form.Item>
 
-                    <Form.Item label="是否能够参加此次培训" name="isJoin" rules={[{required: true, message: "请确认是否能参加"}]} style={{width:`100%`}}>
-                        <Radio.Group onChange={changeConfirm} style={{float:`left`}}>
+                    <Form.Item label="是否能够参加此次培训" name="isJoin" rules={[{required: true, message: "请确认是否能参加"}]}
+                               style={{width: `100%`}}>
+                        <Radio.Group onChange={changeConfirm} style={{float: `left`}}>
                             <Radio value="1"> 是 </Radio>
                             <Radio value="2"> 否 </Radio>
                         </Radio.Group>
@@ -115,7 +122,7 @@ export default function Confirm() {
 
                     {confirmTrain && (
                         <Form.Item label="是否需要购买卧具" name="buy" rules={[{required: true, message: "请确认是否需要购买卧具"}]}>
-                            <Radio.Group onChange={changeNeedBed} style={{float:`left`}}>
+                            <Radio.Group onChange={changeNeedBed} style={{float: `left`}}>
                                 <Radio value="1"> 是 </Radio>
                                 <Radio value="2"> 否 </Radio>
                             </Radio.Group>
@@ -124,62 +131,62 @@ export default function Confirm() {
 
                     {needBed && confirmTrain && (
                         <Form.Item name="bedNeed" label="卧具" rules={[{required: true, message: "请选择卧具"}]}>
-                            <div style={{float:`left`}}>
-                            <Checkbox.Group>
-                                <Row>
-                                    <Col span={4}>
-                                        <Checkbox value="棕垫" style={{lineHeight: "32px"}}>
-                                            棕垫
-                                        </Checkbox>
-                                    </Col>
-                                    <Col span={4}>
-                                        <Checkbox value="棉被" style={{lineHeight: "32px"}}>
-                                            棉被
-                                        </Checkbox>
-                                    </Col>
-                                    <Col span={4}>
-                                        <Checkbox value="棉褥" style={{lineHeight: "32px"}}>
-                                            棉褥
-                                        </Checkbox>
-                                    </Col>
-                                    <Col span={4}>
-                                        <Checkbox value="被罩" style={{lineHeight: "32px"}}>
-                                            被罩
-                                        </Checkbox>
-                                    </Col>
-                                    <Col span={4}>
-                                        <Checkbox value="床单" style={{lineHeight: "32px"}}>
-                                            床单
-                                        </Checkbox>
-                                    </Col>
-                                    <Col span={4}>
-                                        <Checkbox value="枕头" style={{lineHeight: "32px"}}>
-                                            枕头
-                                        </Checkbox>
-                                    </Col>
-                                    <Col span={4}>
-                                        <Checkbox value="枕巾" style={{lineHeight: "32px"}}>
-                                            枕巾
-                                        </Checkbox>
-                                    </Col>
-                                    <Col span={4}>
-                                        <Checkbox value="枕套" style={{lineHeight: "32px"}}>
-                                            枕套
-                                        </Checkbox>
-                                    </Col>
-                                    <Col span={4}>
-                                        <Checkbox value="蚊帐" style={{lineHeight: "32px"}}>
-                                            蚊帐
-                                        </Checkbox>
-                                    </Col>
-                                    <Col span={4}>
-                                        <Checkbox value="凉被" style={{lineHeight: "32px"}}>
-                                            凉被
-                                        </Checkbox>
-                                    </Col>
-                                </Row>
-                            </Checkbox.Group>
-                        </div>
+                            <div style={{float: `left`}}>
+                                <Checkbox.Group>
+                                    <Row>
+                                        <Col span={4}>
+                                            <Checkbox value="棕垫" style={{lineHeight: "32px"}}>
+                                                棕垫
+                                            </Checkbox>
+                                        </Col>
+                                        <Col span={4}>
+                                            <Checkbox value="棉被" style={{lineHeight: "32px"}}>
+                                                棉被
+                                            </Checkbox>
+                                        </Col>
+                                        <Col span={4}>
+                                            <Checkbox value="棉褥" style={{lineHeight: "32px"}}>
+                                                棉褥
+                                            </Checkbox>
+                                        </Col>
+                                        <Col span={4}>
+                                            <Checkbox value="被罩" style={{lineHeight: "32px"}}>
+                                                被罩
+                                            </Checkbox>
+                                        </Col>
+                                        <Col span={4}>
+                                            <Checkbox value="床单" style={{lineHeight: "32px"}}>
+                                                床单
+                                            </Checkbox>
+                                        </Col>
+                                        <Col span={4}>
+                                            <Checkbox value="枕头" style={{lineHeight: "32px"}}>
+                                                枕头
+                                            </Checkbox>
+                                        </Col>
+                                        <Col span={4}>
+                                            <Checkbox value="枕巾" style={{lineHeight: "32px"}}>
+                                                枕巾
+                                            </Checkbox>
+                                        </Col>
+                                        <Col span={4}>
+                                            <Checkbox value="枕套" style={{lineHeight: "32px"}}>
+                                                枕套
+                                            </Checkbox>
+                                        </Col>
+                                        <Col span={4}>
+                                            <Checkbox value="蚊帐" style={{lineHeight: "32px"}}>
+                                                蚊帐
+                                            </Checkbox>
+                                        </Col>
+                                        <Col span={4}>
+                                            <Checkbox value="凉被" style={{lineHeight: "32px"}}>
+                                                凉被
+                                            </Checkbox>
+                                        </Col>
+                                    </Row>
+                                </Checkbox.Group>
+                            </div>
                         </Form.Item>
                     )}
 
@@ -204,10 +211,18 @@ export default function Confirm() {
                             <Form.Item
                                 label="到津时间"
                                 name="timeToJin"
-                                rules={[{required: true, message: "请输入到津时间"}]}
+                                rules={[{required: true, message: "请选择到津时间"}]}
                             >
-                                <Input/>
+
+                                        <DatePicker
+                                            format="YYYY-MM-DD HH:mm"
+                                            style={{float:"left"}}
+                                            showTime
+                                        />
+
                             </Form.Item>
+
+
                             <Form.Item
                                 label="航班/车次"
                                 name="trainNumber"
@@ -217,7 +232,7 @@ export default function Confirm() {
                             </Form.Item>
                             <Form.Item label="是否需要接站" name="isNeedPickUp"
                                        rules={[{required: true, message: "请选择是否需要接站"}]}>
-                                <Radio.Group style={{float:`left`}}>
+                                <Radio.Group style={{float: `left`}}>
                                     <Radio value="1"> 是 </Radio>
                                     <Radio value="2"> 否 </Radio>
                                 </Radio.Group>
@@ -225,18 +240,20 @@ export default function Confirm() {
 
                             <Form.Item label="陪同人数" name="accompanyNumber"
                                        rules={[{required: true, message: "请输入陪同人数"}]}>
-                                <InputNumber style={{float:`left`}}/>
+                                <InputNumber style={{float: `left`}}/>
                             </Form.Item>
                         </>
                     )}
 
                     <Form.Item wrapperCol={{offset: 4, span: 16}}>
                         <Button type="primary" htmlType="submit" className="tju">
-                         提交
+                            提交
                         </Button>
                     </Form.Item>
                 </Form>
             </Card>
+
+            </ConfigProvider>
         </ConfirmInfoBox>
     );
 }

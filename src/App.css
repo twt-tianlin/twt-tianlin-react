@@ -52,3 +52,45 @@
 {
     color: white;
 }
+
+.lab>div
+{
+    margin-right: 0;
+    /*width: 50%;*/
+    /*background-color:blue;*/
+}
+
+.lab>div>label {
+    white-space: pre-line;
+    text-align: center;
+}
+
+.lab>div>lab::before
+{
+    margin-bottom: 50%;
+    background-color: red;
+}
+
+.ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before
+{
+    position: relative;
+    margin-left: 10px;
+}
+.ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)
+{
+    height:100%;
+    margin-left: 10px;
+}
+
+.ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::after
+{
+    /*display: none;*/
+    content: " ";
+}
+
+
+
+.ant-row.ant-form-item.lab>div>label::before{
+    margin-bottom: 15%;
+    /*background-color: red;*/
+}

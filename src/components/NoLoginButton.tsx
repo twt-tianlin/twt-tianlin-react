@@ -13,7 +13,7 @@ export default function NoLoginButton() {
         <div >
             <UserButtonBox>
                 <Button  style={{ marginTop:"20px",backgroundColor:"#f5f8fa" }} shape={"round"} size={"large"}>
-                    <Link to={"/login"} style={{color:"#005180"}}>登录</Link>
+                    <Link to={"/login"} style={{color:"#005180"}}>请先登录</Link>
                 </Button>
             </UserButtonBox>
         </div>

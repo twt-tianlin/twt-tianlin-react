@@ -231,8 +231,8 @@ export default function Confirm() {
                     )}
 
                     <Form.Item wrapperCol={{offset: 4, span: 16}}>
-                        <Button type="primary" htmlType="submit">
-                            提交
+                        <Button type="primary" htmlType="submit" className="tju">
+                         提交
                         </Button>
                     </Form.Item>
                 </Form>

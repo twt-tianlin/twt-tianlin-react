@@ -67,7 +67,7 @@ export const Login: React.FC = () => {
 
           {/*登录按钮*/}
           <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" className="tju">
               登录
             </Button>
           </Form.Item>

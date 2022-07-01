@@ -21,17 +21,33 @@ export default function PublishNotice() {
     // Hook
     const navigate = useNavigate()
 
+    // 上传附件前校验格式
+    function beforeUploadAttachment(file:any) {
+        let fileType = file.name.split('.');
+        const fileDate = fileType.slice(-1);
+        if (['zip', 'rar'].indexOf(fileDate[0]) < 0) {
+            message.error('请上传zip或rar文件');
+            return false
+        }
+
+        const isLt10M = file.size / 1024 / 1024 < 10;
+        if (!isLt10M) {
+            message.error('文件必须小于10M');
+        }
+        return  isLt10M;
+    }
+    // 上传附件
     const uploadFile: UploadProps = {
         name: "file",
-        action: "http://8.141.161.245:8080/api/upload/notice",
+        action: "http://localhost:8080/api/upload/notice",
         onChange(info) {
             if (info.file.status !== "uploading") {
                 filePath = info.file.response;
             }
             if (info.file.status === "done") {
-                message.success(`${info.file.name} file uploaded successfully`);
+                message.success(`${info.file.name} 文件上传成功`);
             } else if (info.file.status === "error") {
-                message.error(`${info.file.name} file upload failed.`);
+                message.error(`${info.file.name} 文件上传失败.`);
             }
         },
     };
@@ -55,6 +71,8 @@ export default function PublishNotice() {
                 message.error("系统异常 请联系管理员");
             });
     };
+
+
     return (
         <PublishNoticeBox>
             {/*将这个发布框视为Card*/}
@@ -91,7 +109,7 @@ export default function PublishNotice() {
 
                     {/*上传附件*/}
                     <Form.Item wrapperCol={{offset: 4, span: 16}}>
-                        <Upload {...uploadFile}>
+                        <Upload {...uploadFile} beforeUpload={beforeUploadAttachment}>
                             <Button icon={<UploadOutlined/>}>
                                 上传附件
                             </Button>
@@ -100,7 +118,7 @@ export default function PublishNotice() {
 
                     {/*发布按钮*/}
                     <Form.Item wrapperCol={{offset: 4, span: 16}}>
-                        <Button type="primary" htmlType="submit">
+                        <Button type="primary" htmlType="submit" className="tju">
                             发布公告
                         </Button>
                     </Form.Item>

@@ -58,7 +58,7 @@ export const Register: React.FC = () => {
             <Form.Item
               label="邮箱"
               name="email"
-              rules={[{ required: true, message: "请输入您的邮箱" }]}
+              rules={[{ required: true, pattern: /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/, message: "邮箱格式不正确" }]}
             >
               <Input />
             </Form.Item>
@@ -80,7 +80,7 @@ export const Register: React.FC = () => {
 
           {/*注册按钮*/}
           <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" className="tju">
               注册
             </Button>
           </Form.Item>

@@ -61,7 +61,7 @@ export default function NoticeDetail() {
                     <Divider/>
                     <Title level={5} style={{}}>{notice.title}</Title>
 
-                    <Text italic>{notice.updatedAt}</Text>
+                    <Text>{notice.updatedAt}</Text>
                     
                         <div style={{textAlign: `left`}}>
                             <p>&emsp;&emsp;{notice.content}</p>
@@ -70,7 +70,7 @@ export default function NoticeDetail() {
                     <Text>
                         附件 【 
                         <Button type="link"
-                                onClick={() => window.open("http://8.141.161.245:8080/api/download/notice/attachment?filePath=" + notice.filePath)}> {notice.filePath.substring(notice.filePath.lastIndexOf("/") + 1)} 
+                                onClick={() => window.open("http://localhost:8080/api/download/notice/attachment?filePath=" + notice.filePath)}> {notice.filePath.substring(notice.filePath.lastIndexOf("/") + 1)} 
                         </Button> 
                         】
                     </Text>

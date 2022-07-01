@@ -42,3 +42,13 @@
 *{
     color:#344B77
 }
+.tju
+{
+    background-color: #344b77;
+    border-color: #344b77;
+}
+
+.tju>span
+{
+    color: white;
+}

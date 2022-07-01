@@ -80,7 +80,7 @@ export default function Apply() {
     // 上传一寸照片
     const uploadPhoto: UploadProps = {
         name: "file",
-        action: "http://8.141.161.245:8080/api/upload/photo",
+        action: "http://localhost:8080/api/upload/photo",
         onChange(info) {
             if (info.file.status !== "uploading") {
                 photoPath = info.file.response;
@@ -96,7 +96,7 @@ export default function Apply() {
     // 上传文件档案
     const uploadFile: UploadProps = {
         name: "file",
-        action: "http://8.141.161.245:8080/api/upload/file",
+        action: "http://localhost:8080/api/upload/file",
         onChange(info) {
             if (info.file.status !== "uploading") {
                 filePath = info.file.response;

@@ -82,11 +82,15 @@ export default function CheckProcess() {
   return (
     <div>
       <Card title="导出" style={{textAlign:'center'}}>
-        <Card.Grid style={gridStyle} onClick={()=>window.open("http://8.141.161.245:8080/api/download/applyInfo")}>
+        <Card.Grid style={gridStyle} onClick={()=>window.open("http://localhost:8080/api/download/applyInfo")}>
         <Button type="link">导出报名信息</Button></Card.Grid>
-        <Card.Grid style={gridStyle} onClick={()=>window.open("http://8.141.161.245:8080/api/download/confirmInfo")}>
+        <Card.Grid style={gridStyle} onClick={()=>window.open("http://localhost:8080/api/download/confirmInfo")}>
         <Button type="link">导出确认信息</Button></Card.Grid>
+<<<<<<< HEAD
         <Card.Grid style={gridStyle} onClick={()=>window.open("http://8.141.161.245:8080/api/download/studentProofMaterial")}>
+=======
+        <Card.Grid style={gridStyle} onClick={()=>window.open("http://localhost:8080/api/download/attachment123")}>
+>>>>>>> c5230266fbfe8fbd3ba5f46f06deac948483d2c5
         <Button type="link">导出学生佐证材料</Button></Card.Grid>
       </Card>
       <br />

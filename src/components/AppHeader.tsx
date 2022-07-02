@@ -1,5 +1,5 @@
 import React from "react";
-import {Layout, message} from "antd";
+import {Layout} from "antd";
 import {Button} from "antd";
 import logo from "../images/logo.png";
 import styled from "styled-components";

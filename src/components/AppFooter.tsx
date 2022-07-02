@@ -30,7 +30,7 @@ export default function AppFooter() {
               </a>
               <PBox>© 2000-2019/津ICP备05004358号-12/津教备0767号</PBox>
               <br></br>
-              <img src={twt}></img>
+              <img src={twt} alt=''></img>
               <br></br>
               <br></br>
             </div>

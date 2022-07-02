@@ -39,7 +39,7 @@ export default function PublishNotice() {
     // 上传附件
     const uploadFile: UploadProps = {
         name: "file",
-        action: "http://localhost:8080/api/upload/notice",
+        action: "http://8.141.161.245:8080/api/upload/notice",
         onChange(info) {
             if (info.file.status !== "uploading") {
                 filePath = info.file.response;

@@ -131,8 +131,8 @@ export default function Confirm() {
 
                     {needBed && confirmTrain && (
                         <Form.Item name="bedNeed" label="卧具" rules={[{required: true, message: "请选择卧具"}]}>
-                            <div style={{float: `left`}}>
-                                <Checkbox.Group>
+
+                                <Checkbox.Group style={{float:"left"}}>
                                     <Row>
                                         <Col span={4}>
                                             <Checkbox value="棕垫" style={{lineHeight: "32px"}}>
@@ -186,7 +186,7 @@ export default function Confirm() {
                                         </Col>
                                     </Row>
                                 </Checkbox.Group>
-                            </div>
+
                         </Form.Item>
                     )}
 

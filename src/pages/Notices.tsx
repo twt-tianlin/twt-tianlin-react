@@ -1,11 +1,11 @@
 import React from "react";
-import {Typography, Divider, Card} from "antd";
+import {Typography, Divider} from "antd";
 import {useEffect, useState} from "react";
 import {getAllNotices} from "../api/notice";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
 
-const {Title, Paragraph, Text} = Typography;
+const {Title} = Typography;
 
 const NoticesBox = styled.div`
   background-color: white;
